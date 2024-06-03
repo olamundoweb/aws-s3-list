@@ -1,0 +1,16 @@
+name: aws-s3-list
+description: Get AWS s3 objects
+branding:
+  icon: 'info'
+  color: 'green'
+inputs:
+  bucket-name:
+    description: Bucket name.
+    required: true
+outputs:
+  objects-key:
+    description: List of keys from s3.
+
+runs:
+  using: node20
+  main: dist/index.js

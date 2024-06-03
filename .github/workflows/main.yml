@@ -1,0 +1,28 @@
+name: AWS s3 List
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  s3:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Run s3 Automation
+        id: s3
+        uses: ./
+        with:
+          bucket-name: ${{ vars.BUCKET_NAME }}
+
+      - name: Showing the result
+        run: |
+          echo "${{ steps.s3.outputs.objects-key }}"
