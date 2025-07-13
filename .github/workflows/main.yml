@@ -19,7 +19,7 @@ jobs:
 
       - name: Run s3 Automation
         id: s3
-        uses: ./
+        uses: olamundoweb/aws-s3-list@v1.0.3
         with:
           bucket-name: ${{ vars.BUCKET_NAME }}
 
